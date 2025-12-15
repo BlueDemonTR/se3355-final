@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose'
-import { CardItem } from './nonDatabase'
 
 const CubeSchema = new Schema({
   name: String,

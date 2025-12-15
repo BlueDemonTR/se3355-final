@@ -16,10 +16,7 @@ async function init() {
   for (const { id, image_url_small: image } of ids) {
     count++
     
-    if(exists.has(id.toString())) {
-      console.log('skipping', id)
-      continue
-    }
+    if(exists.has(id.toString())) continue
 
     const img = await axios({
       url: image,

@@ -1,9 +1,20 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
+import getRoutes from '../actions'
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = Router()
 
-module.exports = router;
+const middleware = (req, res, next) => { next() }
+
+async function indexRouter() {
+  const routes = await getRoutes()
+
+  routes.forEach((val, key) => {
+    const { method, action, authorized } = require(val).default
+    
+    router[method](`/${key}`, middleware, action)
+  })
+
+  return router
+}
+
+export default indexRouter
