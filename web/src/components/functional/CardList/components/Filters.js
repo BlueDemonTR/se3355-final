@@ -5,9 +5,6 @@ import { reduceClass } from 'lib'
 
 const Filters = ({ selected = [], handleSelect }) => {
 
-  console.log(selected);
-  
-
   function isSelected(item) {
     return selected.find(x => x.label === item.label)
   }

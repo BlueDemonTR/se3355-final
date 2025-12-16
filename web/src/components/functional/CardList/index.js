@@ -48,7 +48,7 @@ const CardList = ({
   }
 
   function filterCards() {
-    if(!filters.length) return cards
+    if(!filters.length || hideFilters) return cards
 
     const filteredCards = cards.filter(x => {
       for (const { filter } of filters) {

@@ -11,9 +11,6 @@ const Auth = () => {
   const navigatorLoading = useSelector(state => state.appState?.loadingButton === 'navigator'),
     userId = useSelector(state => state.user?._id)
 
-  console.log(userId);
-  
-
   return (
     <Box relative>
       {navigatorLoading && (
