@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"paths": {
+			"lib/*": ["./src/lib/*"],
+			"components/*": ["./src/components/*"],
+			"screens/*": ["./src/screens/*"],
+			"store/*": ["./src/store/*"],
+			"containers/*": ["./src/containers/*"],
+			"services/*": ["./src/services/*"]
+		}
+	},
+	"include": ["src"]
+}

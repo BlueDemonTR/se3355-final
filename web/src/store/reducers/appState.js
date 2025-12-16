@@ -1,0 +1,45 @@
+const defaultState = {
+	dark: true,
+	loadingButton: null,
+	errRes: {},
+	version: '1.0'
+}
+
+const appState = (state = defaultState, action) => {
+	const { payload, type } = action
+
+	switch (type) {
+		case 'SET_ONBOARDED':
+			return {
+				...state,
+				onboarded: payload
+			}
+
+		case 'RESET_APP_STATE': 
+			return {
+				...defaultState,
+				errRes: {},
+				dark: true
+			}
+
+		case 'LOADING_BUTTON': 
+			return {
+				...state,
+				loadingButton: payload
+			}
+
+		case 'HANDLE_RES':
+			return {
+				...state,
+				errRes: {
+					err: payload.err ? payload.err : null,
+					res: payload.res ? payload.res : null
+				}
+			}
+
+		default:
+			return state
+	}
+}
+
+export default appState
