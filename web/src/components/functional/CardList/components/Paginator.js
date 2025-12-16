@@ -1,11 +1,10 @@
-import Box from 'components/Box'
-import Button from 'components/Button'
-import Text from 'components/Text'
+import Box from 'components/common/Box'
+import Button from 'components/common/Button'
+import Text from 'components/common/Text'
 import React from 'react'
 
 const Paginator = ({ page, endReached, setPage }) => {
   const hasPrev = page > 0
-
 
   return (
     <Box

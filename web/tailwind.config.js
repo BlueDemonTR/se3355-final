@@ -17,11 +17,11 @@ theme: {
             'normal': '#FDE68A',
             'spell': '#FDE68A',
             'ritual': '#9DB5CC',
-            'link': '#006EAD',
+            'link': '#006ead',
             'fusion': '#A086B7',
             'trap': '#BC5A84',
             'synchro': '#CCCCCC',
-            'gray': '#828e85',
+            'token': '#828e85',
             'xyz': '#000000',
             'low-scale': '#F00000',
             'high-scale': '#323299',
@@ -29,6 +29,9 @@ theme: {
             'button-normal': '#FFFFFF',
             'button-hover': '#4FD9FF',
             'button-active': '#2CA6FF',
+        },
+        aspectRatio: {
+            card: '813/1185'
         },
         spacing: {
             half: '50%',

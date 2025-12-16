@@ -26,6 +26,8 @@ async function init() {
   const res = await Api.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
   if(!res) return
 
+  global.cardDatabase = res.data
+
   const ids = res.data.reduce((prev, curr) => {
     return [...prev, ...curr.card_images]
   }, [])

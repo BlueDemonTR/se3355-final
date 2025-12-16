@@ -1,7 +1,7 @@
 import React from 'react'
-import Button from './Button'
 import { useNavigate } from 'react-router-dom'
 import { reduceClass, style } from 'lib'
+import Button from 'components/common/Button'
 
 
 const Nav = () => {
@@ -10,6 +10,7 @@ const Nav = () => {
   const items = [
     { text: 'Homepage', icon: '', address: '/' },
     { text: 'Cubes', icon: '', address: '/cubes' },
+    { text: 'Cards', icon: '', address: '/cards' },
     { text: 'Lobbies', icon: '', address: '/lobbies' },
     { text: 'Account', icon: '', address: '/account' },
   ]

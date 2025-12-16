@@ -10,7 +10,6 @@ const defaultButton = [
   'px-4',
   'py-1',
   'text-white',
-
   'data-activated:bg-button-active'
 ]
 

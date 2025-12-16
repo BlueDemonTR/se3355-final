@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { reduceClass, style } from 'lib'
-import Text from 'components/Text'
+import Text from 'components/common/Text'
 
 const ListItem = ({ navigateTo, item }) => {
   const { name, id, sprite, title } = item,

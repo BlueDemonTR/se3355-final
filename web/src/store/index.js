@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage'
 // import reducers
 import appState from './reducers/appState'
 import user from './reducers/user'
+import cards from './reducers/cards'
 
 const rootPersistConfig = {
 	key: 'root',
@@ -19,7 +20,8 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
 	appState,
-	user
+	user,
+	cards
 })
 
 const pReducer = persistReducer(rootPersistConfig, rootReducer)

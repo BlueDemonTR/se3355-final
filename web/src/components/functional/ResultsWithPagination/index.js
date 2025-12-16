@@ -1,9 +1,9 @@
-import Collapsable from 'components/Collapsable'
-import ContentArea from 'components/ContentArea'
-import Title from 'components/Title'
-import { GenerationFilter, ListItem, ListWrapper, Paginator } from './components'
+import Collapsable from 'components/common/Collapsable'
+import Title from 'components/common/Title'
+import ContentArea from 'components/layout/ContentArea'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { GenerationFilter, ListItem, ListWrapper, Paginator } from './components'
 
 
 const ResultsWithPagination = ({ items, navigateTo, title, pullMore, pullMoreAction, noFilter }) => {
@@ -102,7 +102,7 @@ const ResultsWithPagination = ({ items, navigateTo, title, pullMore, pullMoreAct
         ))}
       </ListWrapper>
 
-      <Paginator 
+      <Paginator
         setPage={setPage}
         page={page}
         endReached={endReached}

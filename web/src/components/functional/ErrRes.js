@@ -1,7 +1,7 @@
 import { reduceClass } from 'lib'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Text from './Text'
+import Text from '../common/Text'
 
 const ErrRes = () => {
 	const err = useSelector(state => state.appState?.errRes?.err),

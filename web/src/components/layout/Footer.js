@@ -1,7 +1,7 @@
 import React from 'react'
 import { reduceClass, style } from 'lib'
-import Box from './Box'
-import Text from './Text'
+import Box from 'components/common/Box'
+import Text from 'components/common/Text'
 
 
 const Footer = () => {

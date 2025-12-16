@@ -21,8 +21,6 @@ function connect() {
 		return
 	}
 
-	console.log(API_URL)
-
 	socket = io(API_URL, {
 		query: { token }
 	})
