@@ -6,13 +6,13 @@ const navigation = [
   'sticky', 
   'w-full', 
   'h-header', 
-  'bg-pokeball-white',
+  'bg-four',
   'shadow-xl',
   'top-0', 
   'animate-fadeIn', 
   'z-40',
   'md:border-b-2',
-  'md:border-pokeball-black'
+  'md:border-black'
 ]
 
 export default navigation
