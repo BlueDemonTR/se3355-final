@@ -4,7 +4,7 @@ import { reduceClass, style } from 'lib'
 import Text from 'components/common/Text'
 
 const ListItem = ({ navigateTo, item }) => {
-  const { name, id, sprite, title } = item,
+  const { name, _id, sprite, title } = item,
     navigate = useNavigate()
 
   return (
@@ -12,7 +12,7 @@ const ListItem = ({ navigateTo, item }) => {
       className={
         reduceClass(style.listItem)
       }
-      onClick={() => navigate(`/${navigateTo}/${id}`)}
+      onClick={() => navigate(`/${navigateTo}/${_id}`)}
     >
       {!!sprite && (
         <img src={sprite} alt={`${name}'s sprite`}/>

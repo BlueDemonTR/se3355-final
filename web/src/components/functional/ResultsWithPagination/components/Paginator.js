@@ -6,7 +6,6 @@ import React from 'react'
 const Paginator = ({ page, endReached, setPage }) => {
   const hasPrev = page > 0
 
-
   return (
     <Box
       element='footer'

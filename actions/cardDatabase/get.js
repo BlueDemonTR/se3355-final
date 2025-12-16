@@ -15,8 +15,6 @@ async function action(req, res) {
 
   const skipped = global.cardDatabase.slice(skip, skip + count)
 
-  
-
   res.send({
     data: skipped,
     endReached: global.cardDatabase.length <= skip + count

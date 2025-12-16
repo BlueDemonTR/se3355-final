@@ -7,6 +7,8 @@ const defaultButton = [
   'disabled:text-gray-500',
   'transition-colors',
   'rounded-2xl',
+  'border-2',
+  'border-primary',
   'px-4',
   'py-1',
   'text-white',

@@ -14,6 +14,10 @@ const CubeSchema = new Schema({
     ref: 'User',
     required: true
   },
+  playCount: {
+    type: Number,
+    default: 0
+  }
 })
 
 const Cube = model('Cube', CubeSchema)

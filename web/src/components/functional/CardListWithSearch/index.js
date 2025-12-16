@@ -30,12 +30,9 @@ const Cards = ({ handleSelect }) => {
   }
 
   async function searchCards(search) {
-    console.log(search);
-    
     if(search.length < 3) return
 
     const res = await Api.get('/cardDatabase/search', { name: search }, 'navigator')
-    console.log(res)
     if(!res) return
 
     setResults(res)

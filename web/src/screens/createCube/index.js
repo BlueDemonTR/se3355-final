@@ -1,13 +1,29 @@
 import { Box, Button, Card, CardList, CardListWithSearch, ContentArea, Input, Text } from 'components'
 import { Api, reduceClass } from 'lib'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const CreateCube = ({  }) => {
-  const [name, setName] = useState(''),
+  const { id } = useParams(),
+    [name, setName] = useState(''),
     [cards, setCards] = useState([]),
-    canSave = cards.length > 80 && !!name,
+    canSave = cards.length >= 80 && !!name,
     navigate = useNavigate()
+
+  useEffect(() => {
+    getCube()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
+
+  async function getCube() {
+    if(!id) return
+
+    const res = await Api.get('/cube/get', { id }, 'navigator')
+    if(!res) return
+
+    setName(res.name)
+    setCards(res.cards)
+  }
 
   async function saveCube() {
     const cardsMap = new Map()
@@ -22,18 +38,25 @@ const CreateCube = ({  }) => {
     }
     
     const data = {
+      id,
       name,
-      cards: Object.fromEntries(cardsMap)
+      cards: [...cardsMap.entries()].map(([id, count]) => ({ id, count }))
     }
 
-    const res = await Api.post('/cube/create', data, 'navigator')
+    const res = await Api.post(
+      data.id
+        ? '/cube/edit'
+        : '/cube/create', 
+      data, 
+      'navigator'
+    )
     if(!res) return
 
     navigate(`/cube/${res}`)
   }
 
   function handleAddCard(card) {
-    setCards([...cards, card])
+    setCards([card, ...cards])
   }
 
   function handleRemoveCard(card) {
