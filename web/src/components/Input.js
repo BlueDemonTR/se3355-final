@@ -1,7 +1,9 @@
+import { reduceClass, style } from 'lib'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Text from './Text'
 
-const StyledInput = ({ submit, cancel, action, onChangeText, onChange, value = '', ...props }) => {
+const StyledInput = ({ label = '', submit, cancel, action, onChangeText, onChange, value = '', ...props }) => {
 
 	const loadingButton = useSelector(state => state.appState.loadingButton)
 	const loading = loadingButton && action === loadingButton
@@ -20,12 +22,26 @@ const StyledInput = ({ submit, cancel, action, onChangeText, onChange, value = '
 	}
 
   return (
-    <input 
-      onKeyDown={handleKeyDown} 
-      {...props} 
-      onChange={handleChange}
-      value={value}
-    />
+    <div className={reduceClass(style.inputWrapperWrapper)}>
+      {label && (
+        <Text bold>
+          {label}
+        </Text>
+      )}
+
+      <div
+        className={reduceClass(style.inputWrapper)}
+      >
+        <input
+          className={reduceClass(style.input)}
+          onKeyDown={handleKeyDown}
+          {...props} 
+          onChange={handleChange}
+          value={value}
+        />
+      </div>
+
+    </div>
   )
 }
 

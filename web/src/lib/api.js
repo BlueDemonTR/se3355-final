@@ -20,6 +20,19 @@ const setHeaders = async () => {
 	}
 }
 
+function handleError(e) {
+	console.log(e)
+	
+	if(e?.response?.data?.includes('Bad Gateway')) return
+
+	store.dispatch({
+		type: 'HANDLE_RES',
+		payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
+	})
+
+	store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+}
+
 // GLOBAL APIS
 const Api = {
 	async get(endpoint, params = {}, button) {
@@ -43,14 +56,7 @@ const Api = {
 
 			return req.data
 		} catch (e) {
-			if(e?.response?.data?.includes('Bad Gateway')) return
-
-			store.dispatch({
-				type: 'HANDLE_RES',
-				payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
-			})
-
-			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+			handleError(e)
 			return false
 		}
 	},
@@ -72,13 +78,7 @@ const Api = {
 
 			return req.data
 		} catch (e) {
-			if(e?.response?.data?.includes('Bad Gateway')) return
-			store.dispatch({
-				type: 'HANDLE_RES',
-				payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
-			})
-
-			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+			handleError(e)
 			return false
 		}
 	},
@@ -101,13 +101,7 @@ const Api = {
 			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
 			return req.data
 		} catch (e) {
-			if(e?.response?.data?.includes('Bad Gateway')) return
-			store.dispatch({
-				type: 'HANDLE_RES',
-				payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
-			})
-
-			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+			handleError(e)
 			return false
 		}
 	},
@@ -131,13 +125,7 @@ const Api = {
 			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
 			return req.data
 		} catch (e) {
-			if(e?.response?.data?.includes('Bad Gateway')) return
-			store.dispatch({
-				type: 'HANDLE_RES',
-				payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
-			})
-
-			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+			handleError(e)
 			return false
 		}
 	},
@@ -163,14 +151,7 @@ const Api = {
 			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
 			return req.data
 		} catch (e) {
-			if(e?.response?.data?.includes('Bad Gateway')) return
-			
-			store.dispatch({
-				type: 'HANDLE_RES',
-				payload: { err: e && e.response ? e.response.data : 'Something went wrong!' }
-			})
-
-			store.dispatch({ type: 'LOADING_BUTTON', payload: null })
+			handleError(e)
 			return false
 		}
 	},

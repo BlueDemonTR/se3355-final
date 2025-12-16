@@ -8,12 +8,13 @@ import indexRouter from './routes'
 
 const app = express()
 
-let origin = [
-  'http://localhost:3000',
-  'http://localhost:31748',
-]
+const corsSettings = {
+  origin: function (origin, callback) {
+    callback(null, true)
+  }
+}
 
-app.use(cors({ origin }))
+app.use(cors(corsSettings))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 

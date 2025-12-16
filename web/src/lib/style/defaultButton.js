@@ -1,13 +1,16 @@
 const defaultButton = [
-  'bg-button-normal', 
-  'hover:bg-button-hover', 
-  'active:bg-button-active', 
-  'disabled:hover:bg-white',
+  'bg-secondary', 
+  'hover:bg-tertiary', 
+  'active:bg-secondary', 
+  'disabled:bg-four',
+  'disabled:hover:bg-four',
   'disabled:text-gray-500',
   'transition-colors',
-  'border-2', 
   'rounded-2xl',
-  'p-1',
+  'px-4',
+  'py-1',
+  'text-white',
+
   'data-activated:bg-button-active'
 ]
 

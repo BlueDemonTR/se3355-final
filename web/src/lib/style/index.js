@@ -7,6 +7,9 @@ import defaultButton from './defaultButton'
 import footer from './footer'
 import footerInner from './footerInner'
 import hyperText from './hyperText'
+import input from './input'
+import inputWrapper from './inputWrapper'
+import inputWrapperWrapper from './inputWrapperWrapper'
 import listItem from './listItem'
 import listWrapper from './listWrapper'
 import navButton from './navButton'
@@ -33,7 +36,10 @@ const style = {
   pokeballNub,
   hyperText,
   footer,
-  footerInner
+  footerInner,
+  inputWrapperWrapper,
+  inputWrapper,
+  input
 }
 
 export default style

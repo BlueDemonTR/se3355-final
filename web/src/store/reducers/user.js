@@ -12,6 +12,9 @@ const user = (state = defaultState, action) => {
 				...payload?.user
 			}
 
+		case 'SET_USER':
+			return payload
+
 		default:
 			return state
 	}

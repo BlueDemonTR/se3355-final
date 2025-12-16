@@ -4,6 +4,7 @@ const contentArea = [
   'flex-1', 
   'w-full', 
   'p-2', 
+  'md:px-0', 
   'animate-fadeIn', 
   'gap-4', 
   'md:max-w-screen-lg'

@@ -7,7 +7,8 @@ async function init() {
   const admin = await User.findOne({ isAdmin: true })
   if(!admin) {
     const newAdmin = new User({ 
-      username: 'admin'
+      username: 'admin',
+      isAdmin: true
     })
 
     newAdmin.password = newAdmin.generateHash(process.env.ADMIN_PASSWORD)
@@ -33,7 +34,7 @@ async function init() {
   for (const { id, image_url_small: image } of ids) {
     count++
     
-    if(exists.has(id.toString())) continue
+    if(exists.has(`/${id.toString()}`)) continue
 
     const img = await axios({
       url: image,

@@ -11,8 +11,10 @@ async function indexRouter() {
   routes.forEach((val, key) => {
     const { method, action, authorized } = require(val).default
     
-    router[method](`/${key}`, middleware, action)
+    router[method](key, middleware, action)
+    console.log(method, key)
   })
+  
 
   return router
 }

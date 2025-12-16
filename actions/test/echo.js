@@ -1,4 +1,4 @@
-import { Authority } from "../lib"
+import { Authority } from '../../lib'
 
 const docs = {
   method: 'get',

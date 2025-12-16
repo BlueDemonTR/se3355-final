@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt'
-import { CardItem } from './nonDatabase'
 
 const UserSchema = new Schema({
   username: {
