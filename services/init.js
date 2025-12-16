@@ -1,8 +1,25 @@
 import axios from 'axios'
 import { Api, routeCreator } from '../lib'
 import fs from 'fs'
+import { User } from '../models'
 
 async function init() {
+  const admin = await User.findOne({ isAdmin: true })
+  if(!admin) {
+    const newAdmin = new User({ 
+      username: 'admin'
+    })
+
+    newAdmin.password = newAdmin.generateHash(process.env.ADMIN_PASSWORD)
+
+    await newAdmin.save()
+
+    console.log('---------------------------------------------------------------------------------')
+    console.warn('NEW ADMIN ACCOUNT GENERATED')
+    console.log('---------------------------------------------------------------------------------')
+  }
+
+
   const exists = await routeCreator('./public/images', '.jpg', true)
 
   const res = await Api.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')

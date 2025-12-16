@@ -8,7 +8,12 @@ const CubeSchema = new Schema({
       count: Number
     }],
     default: []
-  }
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
 })
 
 const Cube = model('Cube', CubeSchema)
