@@ -18,9 +18,9 @@ const CardList = ({
     [filters, setFilters] = useState([]),
     listRef = useRef(null),
     pageCount = rowSize * columnCount,
-    filteredCards = useMemo(filterCards, [cards, filters]),
+    filteredCards = useMemo(filterCards, [cards, filters, hideFilters]),
     currentCards = useMemo(() => filteredCards.slice(page * pageCount, (page + 1) * pageCount), [filteredCards, page, pageCount]),
-    listEndReached = currentCards.findLast(() => true) === cards.findLast(() => true),
+    listEndReached = (page + 1) * pageCount >= filteredCards.length,
     endReached = dataEndReached && listEndReached
 
   useEffect(() => {

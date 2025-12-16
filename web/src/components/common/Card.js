@@ -18,7 +18,7 @@ const Card = ({ item, onClick }) => {
         'bg-cover',
         'w-full'
       ])}
-      onClick={handleClick}
+      onClick={() => handleClick(item)}
 
       // CAN'T MAKE DYNAMICALLY PULLED BACKGROUND IMAGES WITH TAILWIND (without dark magic)
       style={{

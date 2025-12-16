@@ -24,6 +24,7 @@ const Filters = ({ selected = [], handleSelect }) => {
       <div>
         {filters.types.map(item => (
           <button 
+            key={item.label}
             className={reduceClass([
               item.bg,
               item.whiteText ? 'text-white' : 'text-black',

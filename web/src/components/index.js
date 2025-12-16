@@ -17,3 +17,5 @@ export { default as Nav } from './layout/Nav'
 
 export { default as ErrRes } from './functional/ErrRes'
 export { default as ResultsWithPagination } from './functional/ResultsWithPagination'
+export { default as CardList } from './functional/CardList'
+export { default as CardListWithSearch } from './functional/CardListWithSearch'

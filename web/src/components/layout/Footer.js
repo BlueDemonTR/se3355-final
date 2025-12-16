@@ -15,12 +15,12 @@ const Footer = () => {
           </Text>
           
           <Text col='text-pokeball-white' >
-            Source code available on <a href='https://github.com/BlueDemonTR/se3355-midterm'>🔗Github</a>
+            Source code available on <a href='https://github.com/BlueDemonTR/se3355-final'>🔗Github</a>
           </Text>
         </Box>
         
         <Text col='text-pokeball-white' bold>
-          Powered by <a href='https://pokeapi.co/'>🔗PokéApi</a>
+          Powered by <a href='https://ygoprodeck.com/api-guide/'>YGOPRODeck API</a>
         </Text>
       </div>
     </footer>
