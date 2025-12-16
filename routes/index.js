@@ -12,7 +12,6 @@ async function indexRouter() {
     const { method, action, authorized } = require(val).default
     
     router[method](key, middleware, action)
-    console.log(method, key)
   })
   
 

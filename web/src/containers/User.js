@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import { ws } from 'lib'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Homepage } from 'screens'
 
 const User = ({  }) => {
+
+	useEffect(() => {
+		ws.connect()
+	}, [])
 
   return (
     <Routes>
