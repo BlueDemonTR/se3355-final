@@ -1,7 +1,7 @@
 import { Api } from '../lib'
 
 async function getCards(cards) {
-  const ids = cards.map(x => x.id).join(',')
+  const ids = cards.map(x => x.id ?? x).join(',')
 
   if(!ids.length) return {}
 

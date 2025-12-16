@@ -2,6 +2,7 @@ import { Box, Button, Card, CardList, CardListWithSearch, ContentArea, Input, Te
 import { Api, reduceClass } from 'lib'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { ImportButton } from './components'
 
 const CreateCube = ({  }) => {
   const { id } = useParams(),
@@ -92,9 +93,8 @@ const CreateCube = ({  }) => {
         />
 
         <Box justifyBetween directionSwap noFlex gap='gap-2'>
-          <Button
-            text='Import CSV'
-            onClick={() => console.log('bepis')}
+          <ImportButton 
+            setCards={setCards}
           />
 
           <Box noFlex vertical alignCenter gap='gap-2'>
