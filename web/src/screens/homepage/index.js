@@ -1,11 +1,12 @@
+import { ContentArea } from 'components'
 import React, { useState } from 'react'
 
 const Homepage = ({  }) => {
 
   return (
-    <div>
+    <ContentArea>
       🎲
-    </div>
+    </ContentArea>
   )
 }
 

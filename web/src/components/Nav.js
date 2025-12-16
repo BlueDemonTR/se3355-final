@@ -9,9 +9,9 @@ const Nav = () => {
 
   const items = [
     { text: 'Homepage', icon: '', address: '/' },
-    { text: 'Pokémon', icon: '', address: '/pokemon' },
-    { text: 'Games', icon: '', address: '/games' },
-    { text: 'Regions', icon: '', address: '/regions' },
+    { text: 'Cubes', icon: '', address: '/cubes' },
+    { text: 'Lobbies', icon: '', address: '/lobbies' },
+    { text: 'Account', icon: '', address: '/account' },
   ]
 
   return (

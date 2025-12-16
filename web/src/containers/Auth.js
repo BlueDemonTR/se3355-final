@@ -4,9 +4,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { Homepage } from 'screens'
+import User from './User'
+import NonUser from './NonUser'
 
 const Auth = () => {
-  const navigatorLoading = useSelector(state => state.appState?.loadingButton === 'navigator')
+  const navigatorLoading = useSelector(state => state.appState?.loadingButton === 'navigator'),
+    userId = useSelector(state => state.user?._id)
+
+  console.log(userId);
+  
 
   return (
     <Box relative>
@@ -15,9 +21,7 @@ const Auth = () => {
       )}
       <Nav />
 
-      <Routes>
-        <Route exact path='/' element={<Homepage />} />
-      </Routes>
+      {userId ? <User /> : <NonUser /> }
 
       <Footer />
     </Box>

@@ -7,10 +7,7 @@ import storage from 'redux-persist/lib/storage'
 
 // import reducers
 import appState from './reducers/appState'
-import data from './reducers/data'
-import pokemon from './reducers/pokemon'
-import games from './reducers/games'
-import regions from './reducers/regions'
+import user from './reducers/user'
 
 const rootPersistConfig = {
 	key: 'root',
@@ -22,10 +19,7 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
 	appState,
-  data,
-	pokemon,
-	games,
-	regions
+	user
 })
 
 const pReducer = persistReducer(rootPersistConfig, rootReducer)
