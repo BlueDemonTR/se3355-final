@@ -9,6 +9,8 @@ import { HashRouter as Router } from 'react-router-dom'
 import { ErrRes } from 'components'
 import Auth from './Auth'
 
+global.isSmall = window.innerWidth < 1024
+
 const Root = () => (
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>

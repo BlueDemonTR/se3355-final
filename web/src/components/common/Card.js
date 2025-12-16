@@ -1,14 +1,22 @@
 import { getImage, reduceClass } from 'lib'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const Card = ({ item, onClick }) => {
-  const handleClick = onClick ?? goToDatabase
-
-  // console.log(item);
-  
+  const handleClick = global.isSmall 
+    ? displayCard
+    : onClick ?? goToDatabase,
+    dispatch = useDispatch()
 
   function goToDatabase() {
     window.open(item.ygoprodeck_url)
+  }
+
+  function displayCard() {
+    dispatch({
+      type: 'SELECT_CARD',
+      payload: item
+    })
   }
 
   return (
@@ -19,14 +27,13 @@ const Card = ({ item, onClick }) => {
         'w-full'
       ])}
       onClick={() => handleClick(item)}
-
+      onMouseEnter={displayCard}
       // CAN'T MAKE DYNAMICALLY PULLED BACKGROUND IMAGES WITH TAILWIND (without dark magic)
       style={{
         backgroundImage: `url(${getImage(item.id)})`
       }}
     >
-
-
+      
     </button>
   )
 }

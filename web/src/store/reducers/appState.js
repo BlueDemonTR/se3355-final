@@ -2,7 +2,8 @@ const defaultState = {
 	dark: true,
 	loadingButton: null,
 	errRes: {},
-	version: '1.0'
+	version: '1.0',
+	selectedCard: null
 }
 
 const appState = (state = defaultState, action) => {
@@ -20,6 +21,12 @@ const appState = (state = defaultState, action) => {
 				...defaultState,
 				errRes: {},
 				dark: true
+			}
+
+		case 'SELECT_CARD':
+			return {
+				...state,
+				selectedCard: payload
 			}
 
 		case 'LOADING_BUTTON': 

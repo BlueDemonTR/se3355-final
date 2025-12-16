@@ -27,8 +27,6 @@ const ImportButton = ({ setCards }) => {
     if(!res) return
 
     const mappedCards = newCards.map(x => (res[x]))
-    
-    console.log(mappedCards)
 
     setCards(cards => [...mappedCards, ...cards])
   }

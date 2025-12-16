@@ -1,5 +1,5 @@
 
-import { Box, Footer, FullScreenLoading, Nav } from 'components'
+import { Box, CardDisplay, Footer, FullScreenLoading, Nav } from 'components'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
@@ -16,6 +16,9 @@ const Auth = () => {
       {navigatorLoading && (
         <FullScreenLoading />
       )}
+
+      <CardDisplay />
+
       <Nav />
 
       {userId ? <User /> : <NonUser /> }

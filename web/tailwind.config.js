@@ -36,6 +36,8 @@ theme: {
         spacing: {
             half: '50%',
             header: '64px',
+            'mobile-header': '40px',
+            'card-display': 'calc(100vh - 160px)',
             content: 'calc(100vh - 64px)'
         },
         keyframes: {

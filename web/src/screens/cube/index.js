@@ -33,7 +33,7 @@ const Cube = ({  }) => {
 
   return (
     <ContentArea>
-      <Box noFlex alignCenter vertical fullW justifyBetween>
+      <Box noFlex alignCenter directionSwap gap='gap-2' fullW justifyBetween>
         <Title>
           {item.name}
         </Title>
