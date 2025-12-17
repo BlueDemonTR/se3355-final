@@ -11,6 +11,8 @@ const NonUser = ({  }) => {
       <Route exact path='/cards' element={<Cards />} />
       <Route exact path='/cubes' element={<Cubes />} />
       <Route exact path='/cube/:id' element={<Cube />} />
+      <Route exact path='/create-cube' element={<Auth />} />
+      <Route exact path='/create-lobby/*' element={<Auth />} />
     </Routes>
   )
 }

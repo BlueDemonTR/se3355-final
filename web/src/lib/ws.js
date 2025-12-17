@@ -27,6 +27,9 @@ function connect() {
 
 	socket.on('connect', () => {
 		clearTimeout(timer)
+
+		console.log('CONNECTED TO WS')
+
 		timer = setTimeout(() => {
 			store.dispatch({
 				type: 'CONNECTED',
@@ -36,9 +39,9 @@ function connect() {
 	})
 
 	socket.onAny((event, args) => {
-		// console.log('---------------------------------------------------------------------------------')
-		// console.log('WS EVENT', event, args)
-		// console.log('---------------------------------------------------------------------------------')
+		console.log('---------------------------------------------------------------------------------')
+		console.log('WS EVENT', event, args)
+		console.log('---------------------------------------------------------------------------------')
 
 		store.dispatch({
 			type: event,

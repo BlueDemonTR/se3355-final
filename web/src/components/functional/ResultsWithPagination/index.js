@@ -7,7 +7,7 @@ import Box from 'components/common/Box'
 
 const PAGE_SIZE = 10
 
-const ResultsWithPagination = ({ items, navigateTo, title }) => {
+const ResultsWithPagination = ({ items, navigateTo, title, onClick }) => {
   const [page, setPage] = useState(0),
     currentItems = items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE),
     endReached = (page + 1) * PAGE_SIZE >= items.length
@@ -20,7 +20,7 @@ const ResultsWithPagination = ({ items, navigateTo, title }) => {
 
       <ListWrapper>
         {currentItems?.map((x, i) => (
-          <ListItem item={x} key={i} navigateTo={navigateTo} />
+          <ListItem item={x} key={i} navigateTo={navigateTo} onClick={onClick} />
         ))}
       </ListWrapper>
 

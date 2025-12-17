@@ -3,16 +3,22 @@ import { useNavigate } from 'react-router-dom'
 import { reduceClass, style } from 'lib'
 import Text from 'components/common/Text'
 
-const ListItem = ({ navigateTo, item }) => {
+const ListItem = ({ navigateTo, item, onClick }) => {
   const { name, _id, sprite, title } = item,
     navigate = useNavigate()
+
+  function handleClick() {
+    if(onClick) onClick(item)
+
+    navigate(`/${navigateTo}/${_id}`)
+  }
 
   return (
     <button 
       className={
         reduceClass(style.listItem)
       }
-      onClick={() => navigate(`/${navigateTo}/${_id}`)}
+      onClick={() => handleClick()}
     >
       {!!sprite && (
         <img src={sprite} alt={`${name}'s sprite`}/>

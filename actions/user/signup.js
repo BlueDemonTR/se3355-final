@@ -21,7 +21,7 @@ async function action(req, res) {
 
   
   const newUser = new User({ 
-    username: 'admin'
+    username
   })
 
   newUser.password = newUser.generateHash(password)
@@ -30,11 +30,11 @@ async function action(req, res) {
 
   newUser.password = ''
 
-  const tokenData = { id: exists._id }
+  const tokenData = { id: newUser._id }
 
   const token = sign(tokenData, env.JWT_SECRET, { expiresIn: '14d' })
 
-  res.send({ user: exists, token })
+  res.send({ user: newUser, token })
 }
 
 export default docs

@@ -56,6 +56,11 @@ const Cube = ({  }) => {
       <CardList
         cards={item.cards}
       />
+      
+      <Button 
+        text='Play this cube'
+        onClick={() => navigate(`/create-lobby/${id}`)}
+      />
     </ContentArea>
   )
 }

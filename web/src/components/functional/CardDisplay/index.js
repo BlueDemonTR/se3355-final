@@ -19,7 +19,7 @@ const CardDisplay = ({  }) => {
     
     clearTimeout(timer)
     timer = setTimeout(() => fetchCard(), 100)
-  }, [selectedCard.id])
+  }, [selectedCard?.id])
 
   async function fetchCard() {
     if(!selectedCard) return
