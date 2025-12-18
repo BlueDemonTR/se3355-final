@@ -35,7 +35,7 @@ const CardSchema = new Schema({
   scale: Number,
   level: Number,
   frameType: String,
-
+  ygoprodeck_url: String
 }, { strict: true })
 
 const LobbySchema = new Schema({

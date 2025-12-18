@@ -1,13 +1,46 @@
-import { CardList, ContentArea, Title } from 'components'
-import { reduceClass } from 'lib'
+import { Box, Button, CardList, ContentArea, Title } from 'components'
+import { Api, reduceClass } from 'lib'
 import React, { useMemo, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Draft = ({  }) => {
   const lobby = useSelector(state => state.lobby),
-    { currentPack, drafted, cardData } = lobby,
+    userId = useSelector(state => state.user._id),
+    { currentPack, drafted, cardData, attendants, owner, takenTurn } = lobby,
+    isOwner = owner === userId,
     mappedCurrentPack = useMemo(() => mapCards(currentPack), [cardData, currentPack]),
-    mappedDrafted = useMemo(() => mapCards(drafted), [cardData, drafted])
+    mappedDrafted = useMemo(() => mapCards(drafted), [cardData, drafted]),
+    dispatch = useDispatch()
+
+  async function pickCard(card) {
+    if(takenTurn) return
+
+    dispatch({
+      type: 'TAKE_TURN',
+      payload: userId
+    })
+
+    const res = await Api.post('/lobby/pick', { lobbyId: lobby._id, cardId: card.id  })
+    if(!res)  {
+      dispatch({
+        type: 'RETAKE_TURN',
+        payload: userId
+      })
+
+      return
+    }
+
+    dispatch({
+      type: 'PICK_CARD',
+      payload: card.id
+    })
+  }
+
+  async function kickUser(user) {
+    // TODO
+    const res = await Api.post('/lobby/kick', { lobbyId: lobby._id, userId: user._id })
+    
+  }
 
   function mapCards(cards) {
     return cards.map(x => cardData[x])
@@ -15,16 +48,27 @@ const Draft = ({  }) => {
   
   return (
     <ContentArea>
+      <Box directionSwap gap='gap-2' noFlex>
+        {attendants.map(x => (
+          <Button 
+            disabled={!isOwner || x._id === userId}
+            text={`${x.username} ${(x._id === userId ? takenTurn : x.takenTurn) ? '✅' : '⏰'}`}
+            onClick={() => kickUser(x)}
+          />
+        ))}
+      </Box>
+
       <div
         className={reduceClass([
           'p-2',
           'rounded-xl',
-          'bg-tertiary'
+          takenTurn ? 'bg-secondary' : 'bg-tertiary'
         ])}
       >
         <CardList 
           cards={mappedCurrentPack}
           colCount={2}
+          handleClick={pickCard}
         />
       </div>
       

@@ -4,6 +4,7 @@ const defaultState = {
 	status: '',
 	attendants: [],
 	drafted: [],
+	takenTurn: false,
 	currentPack: [],
 	draftSize: 60,
 	maxLobbySize: 2,
@@ -19,6 +20,7 @@ const lobby = (state = defaultState, action) => {
 				_id: payload.lobby?._id ?? null, 
 				attendants: payload.lobby?.attendants ?? [],
 				drafted: payload.lobby?.drafted ?? [],
+				takenTurn: payload.lobby?.takenTurn ?? false,
 				currentPack: payload.lobby?.currentPack ?? [],
 				owner: payload.lobby?.owner,
 				maxLobbySize: payload.lobby?.maxLobbySize,
@@ -32,6 +34,7 @@ const lobby = (state = defaultState, action) => {
 				_id: payload._id ?? null, 
 				attendants: payload.attendants ?? [],
 				drafted: payload.drafted ?? [],
+				takenTurn: payload.takenTurn ?? false,
 				currentPack: payload.currentPack ?? [],
 				owner: payload.owner,
 				maxLobbySize: payload.maxLobbySize,
@@ -50,7 +53,65 @@ const lobby = (state = defaultState, action) => {
 		case 'SET_PACKS':
 			return {
 				...state,
-				currentPack: payload
+				currentPack: payload,
+				takenTurn: false,
+				attendants: state.attendants.map(x => ({
+					...x,
+					takenTurn: false
+				}))
+			}
+
+		case 'ATTENDANT_TAKEN_TURN':
+			return {
+				...state,
+				attendants: state.attendants.map(x => {
+					if(x._id !== payload) return x
+
+					return {
+						...x,
+						takenTurn: true
+					}
+				})
+			}
+
+		case 'END_DRAFT':
+			return {
+				...state,
+				status: 'ended'
+			}
+
+		case 'TAKE_TURN':
+			return {
+				...state,
+				takenTurn: true,
+				attendants: state.attendants.map(x => {
+					if(x._id !== payload) return x
+
+					return {
+						...x,
+						takenTurn: true
+					}
+				})
+			}
+
+		case 'RETAKE_TURN':
+			return {
+				...state,
+				takenTurn: false,
+				attendants: state.attendants.map(x => {
+					if(x._id !== payload) return x
+
+					return {
+						...x,
+						takenTurn: false
+					}
+				})
+			}
+		
+		case 'PICK_CARD':
+			return {
+				...state,
+				drafted: [payload, ...state.drafted]
 			}
 
 		case 'LOBBY_JOIN':

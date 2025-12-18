@@ -6,11 +6,15 @@ import { Draft, LobbyLeave, Lobby as LobbyScreen } from 'screens'
 const Lobby = ({  }) => {
   const lobbyStatus = useSelector(x => x.lobby?.status)
 
+
+  
   switch(lobbyStatus) {
     case 'waiting':
       return <LobbyScreen />
     case 'drafting':
       return <Draft />
+    case 'ended':
+      return <LobbyLeave showDeck />
 
     default:
       return (

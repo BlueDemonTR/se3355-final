@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 const Card = ({ item, onClick }) => {
-  const handleClick = global.isSmall 
-    ? displayCard
-    : onClick ?? goToDatabase,
+  const clickEvent = onClick ?? goToDatabase,
+    handleClick = global.isSmall 
+      ? displayCard
+      : clickEvent,
     dispatch = useDispatch()
 
   function goToDatabase() {
@@ -27,6 +28,7 @@ const Card = ({ item, onClick }) => {
         'w-full'
       ])}
       onClick={() => handleClick(item)}
+      onDoubleClick={() => clickEvent(item)}
       onMouseEnter={displayCard}
       // CAN'T MAKE DYNAMICALLY PULLED BACKGROUND IMAGES WITH TAILWIND (without dark magic)
       style={{

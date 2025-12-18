@@ -1,5 +1,5 @@
 function isType(card, type) {
-  if(card.typeline) {
+  if(card.typeline && card.typeline?.length) {
     return card.typeline.includes(type)
   }
 

@@ -8,7 +8,7 @@ const ListItem = ({ navigateTo, item, onClick }) => {
     navigate = useNavigate()
 
   function handleClick() {
-    if(onClick) onClick(item)
+    if(onClick) return onClick(item)
 
     navigate(`/${navigateTo}/${_id}`)
   }
