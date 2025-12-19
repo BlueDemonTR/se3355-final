@@ -17,9 +17,16 @@ async function action(req, res) {
   const lobby = await Lobby.findById(id)
   if(!lobby) return res.sendStatus(200)
 
-  await userLeave(lobby, user, io)
-  
-  await lobby.save()
+
+  const updates = new Map()
+
+  await userLeave(lobby, updates, user, io)
+
+  await lobby.updateOne(changes, { new: true })
+
+  const changes = await userLeave(lobby, user, io)
+
+  await lobby.updateOne(changes, { new: true })
 
   res.sendStatus(200)
 }

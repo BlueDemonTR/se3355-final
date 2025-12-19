@@ -23,9 +23,11 @@ async function action(req, res) {
   
   if(lobby.attendants.length >= lobby.maxLobbySize) return res.end()
 
-  await userEnter(lobby, user, io)
-  
-  await lobby.save()
+  const updates = new Map()
+
+  await userEnter(lobby, updates, user, io)
+
+  await lobby.updateOne(changes, { new: true })
 
   res.send(await getClientData(lobby, user._id))
 }
