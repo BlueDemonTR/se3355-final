@@ -32,16 +32,16 @@ indexRouter().then(x => app.use(x))
 
 const server = http.createServer(app)
 
-server.listen(env.HTTP_PORT, () => {
-  console.log(`Node.js HTTP server is running on port ${env.HTTP_PORT}`)
-
-  startDatabase().then(() => console.log('Database up'))
-
-  init()
-})
-
 const io = new Server(server, { cors: corsSettings })
 
 ioConfig(io, app.functions)
 
 app.io = io
+
+server.listen(env.HTTP_PORT, () => {
+  console.log(`Node.js HTTP server is running on port ${env.HTTP_PORT}`)
+
+  startDatabase().then(() => console.log('Database up'))
+
+  init(io)
+})

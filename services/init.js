@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { Api, routeCreator } from '../lib'
 import fs from 'fs'
-import { User } from '../models'
-import { UpdateItem } from '../lib/lobbyUtils'
+import { Lobby, User } from '../models'
+import { checkForNewTurn, UpdateItem } from '../lib/lobbyUtils'
 
-async function init() {
+async function init(io) {
+
+  // CREATE A NEW ADMIN USER IF NONE EXIST
   const admin = await User.findOne({ isAdmin: true })
   if(!admin) {
     const newAdmin = new User({ 
@@ -21,6 +23,14 @@ async function init() {
     console.log('---------------------------------------------------------------------------------')
   }
 
+  // CHECK IF ANY LOBBIES ARE STUCK
+  const lobbies = await Lobby.find()
+
+  for (const lobby of lobbies) {
+    await checkForNewTurn(lobby._id.toString(), io)
+  }
+
+  // PULL NEW IMAGES
   const exists = await routeCreator('./public/images', '.jpg', true)
 
   const res = await Api.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')

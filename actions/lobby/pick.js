@@ -1,5 +1,5 @@
 import { Authority } from '../../lib'
-import { getClientData, inRoom, pickCard, userEnter } from '../../lib/lobbyUtils'
+import { checkForNewTurn, getClientData, inRoom, pickCard, UpdateItem, userEnter } from '../../lib/lobbyUtils'
 import { Lobby } from '../../models'
 
 const docs = {
@@ -23,12 +23,13 @@ async function action(req, res) {
   if(!roomUser) return res.end()
   if(roomUser.takenTurn) return res.end()
 
-  await pickCard(lobby, user._id, cardId, io)
+  const updates = await pickCard(lobby, user._id, cardId, io)
 
-  // TODO: handle race conditions
-  await lobby.save()
+  await UpdateItem.applyUpdates(updates)
 
   res.sendStatus(200)
+
+  setTimeout(() => checkForNewTurn(lobby._id.toString(), io), 500)
 }
 
 export default docs
