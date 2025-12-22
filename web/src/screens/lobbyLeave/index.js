@@ -12,8 +12,6 @@ const LobbyLeave = ({ showDeck }) => {
   function mapCards(cards) {
     return cards.map(x => cardData[x])
   }
-
-  console.log(mappedDrafted)
   
   function exportAsYDKFile() {
     const main = mappedDrafted.filter(x => mainDeckBorders.includes(x.frameType)),
