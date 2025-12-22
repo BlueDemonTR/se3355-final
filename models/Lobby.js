@@ -35,6 +35,7 @@ const CardSchema = new Schema({
   scale: Number,
   level: Number,
   frameType: String,
+  humanReadableCardType: String,
   ygoprodeck_url: String
 }, { strict: true })
 

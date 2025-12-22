@@ -1,5 +1,5 @@
 import { Box, Button, CardList, ContentArea, Text } from 'components'
-import { convertToYDKE } from 'lib'
+import { convertToYDKE, downloadFile } from 'lib'
 import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -12,8 +12,46 @@ const LobbyLeave = ({ showDeck }) => {
   function mapCards(cards) {
     return cards.map(x => cardData[x])
   }
-  
 
+  console.log(mappedDrafted)
+  
+  function exportAsYDKFile() {
+    const main = mappedDrafted.filter(x => mainDeckBorders.includes(x.frameType)),
+      extra = mappedDrafted.filter(x => !mainDeckBorders.includes(x.frameType))
+
+    let text = `
+      #created by cubes
+      #main
+      ${main.map(x => x.id).join('\n')}
+      #extra
+      ${extra.map(x => x.id).join('\n')}
+      !side
+    `
+
+    downloadFile(text, 'draft_deck.ydk')
+  }
+
+  function exportAsCSV() {
+    const map = new Map()
+
+    for (const card of drafted) {
+      if(!map.has(card)) map.set(card, 0)
+      
+      map.set(card, map.get(card) + 1)
+    }
+
+    downloadFile(
+      [...map.entries()].map(([key, count]) => {
+        const cardItem = cardData[key]
+
+        console.log(cardItem, cardData, key)
+
+
+        return `${key},"${cardItem.name}",${cardItem.humanReadableCardType},${count}`
+      }).join('\n'),
+      'draft_deck.csv'
+    )
+  }
 
   function exportAsYDKE() {
     const main = mappedDrafted.filter(x => mainDeckBorders.includes(x.frameType)),
@@ -37,33 +75,36 @@ const LobbyLeave = ({ showDeck }) => {
       </Text>
 
       {showDeck && (
-        <CardList 
-          cards={mappedDrafted}
-        />
+        <React.Fragment>
+          <CardList 
+            cards={mappedDrafted}
+          />
+
+          <Box justifyBetween directionSwap noFlex gap='gap-2'>
+            <Box>
+              <Button 
+                text='Export as .ydk'
+                onClick={exportAsYDKFile}
+              />
+            </Box>
+            
+            <Box>
+              <Button 
+                text='Export as CSV'
+                onClick={exportAsCSV}
+              />
+            </Box>
+
+            <Box>
+              <Button 
+                text='Copy ydke to clipboard'
+                onClick={exportAsYDKE}
+              />
+            </Box>
+          </Box>
+
+        </React.Fragment>
       )}
-
-      <Box justifyBetween directionSwap noFlex gap='gap-2'>
-        <Box>
-          <Button 
-            text='Export as .ydk'
-            disabled
-          />
-        </Box>
-        
-        <Box>
-          <Button 
-            text='Export as CSV'
-            disabled
-          />
-        </Box>
-
-        <Box>
-          <Button 
-            text='Copy to ydke as clipboard'
-            onClick={exportAsYDKE}
-          />
-        </Box>
-      </Box>
     </ContentArea>
 
   )
