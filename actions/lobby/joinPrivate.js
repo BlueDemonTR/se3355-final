@@ -23,11 +23,15 @@ async function action(req, res) {
   
   if(lobby.attendants.length >= lobby.maxLobbySize) return res.end()
 
-  await userEnter(lobby, user, io)
-  
-  await lobby.save()
+  const updates = await userEnter(lobby, user, io)
 
-  res.send(await getClientData(lobby, user._id))
+  await UpdateItem.applyUpdates(updates)
+
+  const newLobby = await Lobby
+    .findById(lobbyId)
+    .populate('attendants.account', 'username')
+
+  res.send(await getClientData(newLobby, user._id))
 }
 
 export default docs

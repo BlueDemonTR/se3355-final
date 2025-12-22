@@ -1,5 +1,5 @@
 import { Authority } from '../../lib'
-import { startLobby } from '../../lib/lobbyUtils'
+import { startLobby, UpdateItem } from '../../lib/lobbyUtils'
 import { Lobby } from '../../models'
 
 const docs = {
@@ -19,9 +19,9 @@ async function action(req, res) {
     
   if(lobby.owner.toString() !== user._id.toString()) return res.end()
 
-  await startLobby(lobby, user, io)
+  const updates = await startLobby(lobby, user, io)
 
-  await lobby.save()
+  await UpdateItem.applyUpdates(updates)
 
   res.sendStatus(200)
 }
