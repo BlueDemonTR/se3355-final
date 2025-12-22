@@ -8,7 +8,14 @@ const UserSchema = new Schema({
     unique: true
   },
   password: String,
-  isAdmin: Boolean
+  isAdmin: Boolean,
+  banned: {
+    until: {
+      type: Date,
+      default: 0
+    },
+    reason: String
+  }
 }, { timestamps: true })
 
 // generates a hashed password with bycrpt

@@ -1,5 +1,5 @@
 import { Authority } from '../../lib'
-import { getClientData, userEnter } from '../../lib/lobbyUtils'
+import { getClientData, UpdateItem, userEnter } from '../../lib/lobbyUtils'
 import { Lobby } from '../../models'
 
 const docs = {
@@ -23,13 +23,15 @@ async function action(req, res) {
   
   if(lobby.attendants.length >= lobby.maxLobbySize) return res.end()
 
-  const updates = new Map()
+  const updates = await userEnter(lobby, user, io)
 
-  await userEnter(lobby, updates, user, io)
+  await UpdateItem.applyUpdates(updates)
 
-  await lobby.updateOne(changes, { new: true })
+  const newLobby = await Lobby
+    .findById(lobbyId)
+    .populate('attendants.account', 'username')
 
-  res.send(await getClientData(lobby, user._id))
+  res.send(await getClientData(newLobby, user._id))
 }
 
 export default docs

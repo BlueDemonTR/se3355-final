@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Api, routeCreator } from '../lib'
 import fs from 'fs'
 import { User } from '../models'
+import { UpdateItem } from '../lib/lobbyUtils'
 
 async function init() {
   const admin = await User.findOne({ isAdmin: true })
@@ -19,7 +20,6 @@ async function init() {
     console.warn('NEW ADMIN ACCOUNT GENERATED')
     console.log('---------------------------------------------------------------------------------')
   }
-
 
   const exists = await routeCreator('./public/images', '.jpg', true)
 
