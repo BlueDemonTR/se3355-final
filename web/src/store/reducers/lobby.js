@@ -134,6 +134,10 @@ const lobby = (state = defaultState, action) => {
 				attendants: state.attendants.filter(x => x._id !== payload)
 			}
 
+		case 'LOBBY_KICKED':
+			alert('You were kicked from this lobby')
+			return defaultState
+			
 		case 'LOGOUT':
 		case 'CLEAR_LOBBY_DATA':
 		case 'RESET': 

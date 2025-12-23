@@ -10,7 +10,6 @@ const Lobby = ({  }) => {
     isOwner = lobby.owner === userId
 
   async function kickUser(user) {
-    // TODO
     const res = await Api.post('/lobby/kick', { lobbyId: lobby._id, userId: user._id })
     
   }
