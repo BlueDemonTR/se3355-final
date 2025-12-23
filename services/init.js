@@ -23,10 +23,6 @@ async function init(io) {
     console.log('---------------------------------------------------------------------------------')
   }
 
-  const main = [1000, 2450, 13456]
-
-  console.log(Buffer.from(new Uint8Array(Uint32Array.from(main.map(x => `${x.id}`))).toString("base64")))
-
   // CHECK IF ANY LOBBIES ARE STUCK
   const lobbies = await Lobby.find()
 
