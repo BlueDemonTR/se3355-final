@@ -1,5 +1,5 @@
 import { Authority } from '../../lib'
-import { userEnter } from '../../lib/lobbyUtils'
+import { getClientData, UpdateItem, userEnter } from '../../lib/lobbyUtils'
 import { Lobby } from '../../models'
 
 const docs = {

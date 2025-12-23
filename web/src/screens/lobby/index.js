@@ -19,7 +19,9 @@ const Lobby = ({  }) => {
     const res = await Api.post('/lobby/start', { lobbyId: lobby._id })
   }
 
-  console.log(lobby)
+  function copyLink() {
+    window.navigator.clipboard.writeText(inviteLink)
+  }
   
   if(!lobby) return
 
@@ -27,6 +29,7 @@ const Lobby = ({  }) => {
     <ContentArea>
       <Button 
         text='Copy Invite Link'
+        onClick={copyLink}
       />
 
       <Text>Invite Link: {inviteLink}</Text>
