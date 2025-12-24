@@ -108,12 +108,17 @@ const lobby = (state = defaultState, action) => {
 				})
 			}
 		
-		case 'PICK_CARD':
+		case 'PICK_CARD': {
+			const idx = state.currentPack.findIndex(x => x === payload)
+
 			return {
 				...state,
-				drafted: [payload, ...state.drafted]
+				drafted: [payload, ...state.drafted],
+				currentPack: state.currentPack.filter((x, i) => i !== idx)
 			}
 
+
+		}
 		case 'LOBBY_JOIN':
 			return {
 				...state,

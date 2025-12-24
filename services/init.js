@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Api, routeCreator } from '../lib'
 import fs from 'fs'
 import { Lobby, User } from '../models'
-import { checkForNewTurn, UpdateItem } from '../lib/lobbyUtils'
+import { checkForNewTurn, startLobby, UpdateItem } from '../lib/lobbyUtils'
 
 async function init(io) {
 
@@ -27,6 +27,10 @@ async function init(io) {
   const lobbies = await Lobby.find()
 
   for (const lobby of lobbies) {
+    if(lobby._id.toString() === '6949bdf60a09efce05856b4d') {
+      await startLobby(lobby, null, io)
+    }
+
     await checkForNewTurn(lobby._id.toString(), io)
   }
 

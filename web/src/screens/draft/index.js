@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Draft = ({  }) => {
   const lobby = useSelector(state => state.lobby),
     userId = useSelector(state => state.user._id),
+    isLoading = useSelector(state => state.appState.loadingButton === 'cardPack'),
     { currentPack, drafted, cardData, attendants, owner, takenTurn } = lobby,
     isOwner = owner === userId,
     mappedCurrentPack = useMemo(() => mapCards(currentPack), [cardData, currentPack]),
@@ -20,7 +21,12 @@ const Draft = ({  }) => {
       payload: userId
     })
 
-    const res = await Api.post('/lobby/pick', { lobbyId: lobby._id, cardId: card.id  })
+    dispatch({
+      type: 'PICK_CARD',
+      payload: card.id
+    })
+
+    const res = await Api.post('/lobby/pick', { lobbyId: lobby._id, cardId: card.id  }, 'cardPack')
     if(!res)  {
       dispatch({
         type: 'RETAKE_TURN',
@@ -29,11 +35,6 @@ const Draft = ({  }) => {
 
       return
     }
-
-    dispatch({
-      type: 'PICK_CARD',
-      payload: card.id
-    })
   }
 
   async function kickUser(user) {
@@ -62,9 +63,25 @@ const Draft = ({  }) => {
         className={reduceClass([
           'p-2',
           'rounded-xl',
+          'relative',
           takenTurn ? 'bg-secondary' : 'bg-tertiary'
         ])}
       >
+        {isLoading && (
+          <div
+            className={reduceClass([
+              'absolute',
+              'w-full',
+              'h-full',
+              'bg-black',
+              'opacity-25',
+              'top-0',
+              'left-0',
+              'rounded-xl',
+            ])}
+          >
+          </div>
+        )}
         <CardList 
           cards={mappedCurrentPack}
           colCount={2}
