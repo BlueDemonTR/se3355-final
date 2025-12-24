@@ -50,7 +50,12 @@ const lobby = (state = defaultState, action) => {
 				status: 'drafting'
 			}
 		
-		case 'SET_PACKS':
+		case 'SET_PACKS': {
+			var gong = document.getElementById('gong-audio')
+			
+			gong.volume = 0.2
+			gong.play()
+			
 			return {
 				...state,
 				currentPack: payload,
@@ -60,6 +65,7 @@ const lobby = (state = defaultState, action) => {
 					takenTurn: false
 				}))
 			}
+		}
 
 		case 'ATTENDANT_TAKEN_TURN':
 			return {

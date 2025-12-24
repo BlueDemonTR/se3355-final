@@ -49,6 +49,10 @@ const Draft = ({  }) => {
   
   return (
     <ContentArea>
+      <audio className='hidden' id='gong-audio' >
+        <source src={require('assets/gong.wav')} type='audio/wav' />
+      </audio>
+
       <Box directionSwap gap='gap-2' noFlex>
         {attendants.map(x => (
           <Button 
