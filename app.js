@@ -1,5 +1,6 @@
 import express, { Router } from 'express'
 import http from 'http'
+import https from 'https'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import env, { startDatabase } from './config'
@@ -31,7 +32,16 @@ app.functions = funcCreator()
 
 indexRouter().then(x => app.use(x))
 
-const options = {}
+
+let httpsServer
+
+const server = http.createServer(app)
+
+const io = new Server(server, { cors: corsSettings })
+
+ioConfig(io, app.functions)
+
+app.io = io
 
 if(process.env.ENV !== 'dev') {
   const key = readFileSync('/etc/ssl/private/apache-selfsigned.key')
@@ -39,15 +49,13 @@ if(process.env.ENV !== 'dev') {
   
   options.key = key
   options.cert = cert
+
+  httpsServer = createServer(options, app)
+
+  httpsServer.listen(env.HTTPS_PORT, () => {
+    console.log(`Node.js HTTP server is running on port ${env.HTTPS_PORT}`)
+  })
 }
-
-const server = http.createServer(app, options)
-
-const io = new Server(server, { cors: corsSettings })
-
-ioConfig(io, app.functions)
-
-app.io = io
 
 server.listen(env.HTTP_PORT, () => {
   console.log(`Node.js HTTP server is running on port ${env.HTTP_PORT}`)
