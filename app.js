@@ -34,12 +34,6 @@ indexRouter().then(x => app.use(x))
 
 const server = http.createServer(app)
 
-const io = new Server(server, { cors: corsSettings })
-
-ioConfig(io, app.functions)
-
-app.io = io
-
 let httpsServer
 if(process.env.ENV !== 'dev') {
   const key = readFileSync('/etc/ssl/private/apache-selfsigned.key')
@@ -53,6 +47,12 @@ if(process.env.ENV !== 'dev') {
     console.log(`Node.js HTTP server is running on port ${env.HTTPS_PORT}`)
   })
 }
+
+const io = new Server(httpsServer ?? server, { cors: corsSettings })
+
+ioConfig(io, app.functions)
+
+app.io = io
 
 server.listen(env.HTTP_PORT, () => {
   console.log(`Node.js HTTP server is running on port ${env.HTTP_PORT}`)
