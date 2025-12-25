@@ -8,6 +8,7 @@ import { ioConfig } from './lib'
 import indexRouter from './routes'
 import { Server } from 'socket.io'
 import funcCreator from './lib/funcCreator'
+import { readFileSync } from 'fs'
 
 const app = express()
 
@@ -33,8 +34,8 @@ indexRouter().then(x => app.use(x))
 const options = {}
 
 if(process.env.ENV !== 'dev') {
-  const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
-  const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+  const key = readFileSync(__dirname + '/../certs/selfsigned.key')
+  const cert = readFileSync(__dirname + '/../certs/selfsigned.crt')
   
   options.key = key
   options.cert = cert
