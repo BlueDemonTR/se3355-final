@@ -3,6 +3,8 @@ import { getToken } from './'
 import { store } from '../store'
 const API_URL = process.env.REACT_APP_API_URL
 
+console.log('CONNECTING TO ' + API_URL)
+
 // BUILD URL PROPS FOR GET AND DELETE REQUESTS
 function buildURLParams(params) {
 	if(!params || !Object.keys(params).length) return ''

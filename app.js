@@ -30,7 +30,17 @@ app.functions = funcCreator()
 
 indexRouter().then(x => app.use(x))
 
-const server = http.createServer(app)
+const options = {}
+
+if(process.env.ENV === 'dev') {
+  const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
+  const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+  
+  options.key = key
+  options.cert = cert
+}
+
+const server = http.createServer(app, options)
 
 const io = new Server(server, { cors: corsSettings })
 
