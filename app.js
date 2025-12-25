@@ -32,9 +32,6 @@ app.functions = funcCreator()
 
 indexRouter().then(x => app.use(x))
 
-
-let httpsServer
-
 const server = http.createServer(app)
 
 const io = new Server(server, { cors: corsSettings })
@@ -43,12 +40,12 @@ ioConfig(io, app.functions)
 
 app.io = io
 
+let httpsServer
 if(process.env.ENV !== 'dev') {
   const key = readFileSync('/etc/ssl/private/apache-selfsigned.key')
   const cert = readFileSync('/etc/ssl/certs/apache-selfsigned.crt')
   
-  options.key = key
-  options.cert = cert
+  const options = { key, cert }
 
   httpsServer = createServer(options, app)
 
