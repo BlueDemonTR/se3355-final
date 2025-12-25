@@ -60,7 +60,7 @@ async function init(io) {
   for (const { id, image_url_small: image } of ids) {
     count++
     
-    if(exists.has(`/${id.toString()}`)) continue
+    if(exists.has(`\\${id.toString()}`)) continue
 
     const img = await axios({
       url: image,
