@@ -16,7 +16,7 @@ async function action(req, res) {
 
   const lobby = await Lobby
     .findById(id)
-    .populate('account', 'username')
+    .populate('attendants.account', 'username')
   if(!lobby) return res.sendStatus(200)
 
   const updates = await userLeave(lobby, user, io)
