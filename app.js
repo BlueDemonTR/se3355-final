@@ -32,7 +32,7 @@ indexRouter().then(x => app.use(x))
 
 const options = {}
 
-if(process.env.ENV === 'dev') {
+if(process.env.ENV !== 'dev') {
   const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
   const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
   
