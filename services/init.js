@@ -34,6 +34,16 @@ async function init(io) {
     await checkForNewTurn(lobby._id.toString(), io)
   }
 
+
+  if(!fs.existsSync('./public')) {
+    fs.mkdirSync('./public')
+  }
+
+  if(!fs.existsSync('./public/images')) {
+    fs.mkdirSync('./public/images')
+  }
+
+
   // PULL NEW IMAGES
   const exists = await routeCreator('./public/images', '.jpg', true)
 
