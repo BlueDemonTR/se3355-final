@@ -35,7 +35,7 @@ const options = {}
 
 if(process.env.ENV !== 'dev') {
   const key = readFileSync('/etc/ssl/private/apache-selfsigned.key')
-  const cert = readFileSync('/etc/ssl/private/apache-selfsigned.crt')
+  const cert = readFileSync('/etc/ssl/certs/apache-selfsigned.crt')
   
   options.key = key
   options.cert = cert
