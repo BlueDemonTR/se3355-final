@@ -3,6 +3,7 @@ import { Api, routeCreator } from '../lib'
 import fs from 'fs'
 import { Lobby, User } from '../models'
 import { checkForNewTurn, startLobby, UpdateItem } from '../lib/lobbyUtils'
+import path from 'path'
 
 async function init(io) {
 
@@ -60,7 +61,7 @@ async function init(io) {
   for (const { id, image_url_small: image } of ids) {
     count++
     
-    if(exists.has(`\\${id.toString()}`)) continue
+    if(exists.has(`${path.sep}${id.toString()}`)) continue
 
     const img = await axios({
       url: image,
