@@ -44,7 +44,7 @@ if(process.env.ENV !== 'dev') {
   httpsServer = https.createServer(options, app)
 
   httpsServer.listen(env.HTTPS_PORT, () => {
-    console.log(`Node.js HTTP server is running on port ${env.HTTPS_PORT}`)
+    console.log(`Node.js HTTPS server is running on port ${env.HTTPS_PORT}`)
   })
 }
 

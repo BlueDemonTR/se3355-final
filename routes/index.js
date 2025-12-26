@@ -88,8 +88,8 @@ async function indexRouter() {
 
   routes.forEach((val, key) => {
     const { method, action, authorized } = require(val).default
-    
-    router[method](key, middlewares[authorized], action)
+
+    router[method](key.replaceAll('\\', '/'), middlewares[authorized], action)
   })
   
 

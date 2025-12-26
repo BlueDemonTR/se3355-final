@@ -8,6 +8,7 @@ const Cube = ({  }) => {
   const { id } = useParams(),
     [item, setItem] = useState(null),
     isOwner = useSelector(x => x.user?._id === item?.owner),
+    isAdmin = useSelector(x => x.user?.isAdmin),
     navigate = useNavigate()
 
   useEffect(() => {
@@ -29,6 +30,14 @@ const Cube = ({  }) => {
     navigate('/cubes')
   }
 
+  async function banCube() {
+    if(!window.confirm('Are you sure?')) return
+
+    const res = await Api.delete('/cube/removeAdmin', { id }, 'navigator')
+    
+    navigate('/cubes')
+  }
+
   if(!item) return null
 
   return (
@@ -38,19 +47,28 @@ const Cube = ({  }) => {
           {item.name}
         </Title>
 
-        {isOwner && (
           <Box noFlex alignCenter vertical gap='gap-2'>
-            <Button 
-              text='Edit'
-              onClick={() => navigate(`/edit-cube/${id}`)}
-            />
+            {isOwner && (
+              <React.Fragment>
+                <Button 
+                  text='Edit'
+                  onClick={() => navigate(`/edit-cube/${id}`)}
+                />
 
-            <Button 
-              text='Delete'
-              onClick={deleteCube}
-            />
+                <Button 
+                  text='Delete'
+                  onClick={deleteCube}
+                />
+              </React.Fragment>
+            )}
+
+            {isAdmin && (
+              <Button 
+                text='Ban Cube'
+                onClick={banCube}
+              />
+            )}
           </Box>
-        )}
       </Box>
 
       <CardList

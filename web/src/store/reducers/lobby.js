@@ -53,8 +53,12 @@ const lobby = (state = defaultState, action) => {
 		case 'SET_PACKS': {
 			var gong = document.getElementById('gong-audio')
 			
-			gong.volume = 0.2
-			gong.play()
+			try {
+				gong.volume = 0.2
+				gong.play()
+			} catch (e) {
+				console.log('CANT PLAY SOUND', e)
+			}
 			
 			return {
 				...state,
