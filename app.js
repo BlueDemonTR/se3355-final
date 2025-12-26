@@ -62,8 +62,9 @@ server.listen(env.HTTP_PORT, () => {
   init(io)
 })
 
-['SIGINT', 'SIGTERM', 'SIGQUIT']
-  .forEach(signal => process.on(signal, () => {
+const quitSignals = ['SIGINT', 'SIGTERM', 'SIGQUIT']
+  
+quitSignals.forEach(signal => process.on(signal, () => {
     server.close()
     if(process.env.ENV !== 'dev') {
       httpsServer.close()
