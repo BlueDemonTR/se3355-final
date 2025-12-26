@@ -10,6 +10,7 @@ import indexRouter from './routes'
 import { Server } from 'socket.io'
 import funcCreator from './lib/funcCreator'
 import { readFileSync } from 'fs'
+import process from 'node:process'
 
 const app = express()
 
@@ -63,14 +64,15 @@ server.listen(env.HTTP_PORT, () => {
 })
 
 const quitSignals = ['SIGINT', 'SIGTERM', 'SIGQUIT']
-  
-quitSignals.forEach(signal => process.on(signal, () => {
+
+quitSignals.forEach(signal => process.on(signal, (code) => {
   server.close()
   if(process.env.ENV !== 'dev') {
     httpsServer.close()
   }
 
   console.log('CLOSED SERVERS')
-  
+  console.log('EXITED WITH', code)
+
   process.exit()
 }))
