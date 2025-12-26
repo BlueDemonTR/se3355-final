@@ -65,10 +65,12 @@ server.listen(env.HTTP_PORT, () => {
 const quitSignals = ['SIGINT', 'SIGTERM', 'SIGQUIT']
   
 quitSignals.forEach(signal => process.on(signal, () => {
-    server.close()
-    if(process.env.ENV !== 'dev') {
-      httpsServer.close()
-    }
-    
-    process.exit();
-  }))
+  server.close()
+  if(process.env.ENV !== 'dev') {
+    httpsServer.close()
+  }
+
+  console.log('CLOSED SERVERS')
+  
+  process.exit()
+}))
