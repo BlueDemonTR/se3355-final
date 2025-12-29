@@ -45,7 +45,7 @@ const lobby = (state = defaultState, action) => {
 				public: payload.public
 			}
 		
-		case 'SET_CARD_DATA':
+		case 'SET_LOBBY_CARD_DATA':
 			return {
 				...state,
 				cardData: payload,

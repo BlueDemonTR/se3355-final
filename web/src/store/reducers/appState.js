@@ -29,13 +29,13 @@ const appState = (state = defaultState, action) => {
 			return {
 				...state,
 				selectedCard: payload,
-				cardData: state.selectedCard.id === payload.id
+				cardData: state.selectedCard?.id === payload.id
 					? state.cardData
 					:	null
 			}
 
 		case 'SET_CARD_DATA':
-			if(state.selectedCard.id !== payload.id) return state
+			if(state.selectedCard?.id !== payload.id) return state
 
 			return {
 				...state,
