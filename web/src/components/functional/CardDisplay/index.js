@@ -5,16 +5,16 @@ import Spinner from 'components/common/Spinner'
 import Text from 'components/common/Text'
 import { Api, reduceClass } from 'lib'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 let timer
 const CardDisplay = ({  }) => {
   const selectedCard = useSelector(state => state.appState?.selectedCard),
-    [fetched, setFetched] = useState(null),
-    [open, setOpen] = useState(false)
+    fetched = useSelector(state => state.appState?.cardData),
+    [open, setOpen] = useState(false),
+    dispatch = useDispatch()
 
   useEffect(() => {
-    setFetched(null)
     if(global.isSmall) setOpen(!!selectedCard)
     
     clearTimeout(timer)
@@ -27,7 +27,10 @@ const CardDisplay = ({  }) => {
     const res = await Api.get('/card/get', { id: selectedCard.id }, 'display')
     if(!res) return
 
-    setFetched(res)
+    dispatch({
+      type: 'SET_CARD_DATA',
+      payload: res
+    })
   }
 
   if(!selectedCard) return null

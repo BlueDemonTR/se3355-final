@@ -3,7 +3,8 @@ const defaultState = {
 	loadingButton: null,
 	errRes: {},
 	version: '1.0',
-	selectedCard: null
+	selectedCard: null,
+	cardData: null
 }
 
 const appState = (state = defaultState, action) => {
@@ -24,9 +25,21 @@ const appState = (state = defaultState, action) => {
 			}
 
 		case 'SELECT_CARD':
+			
 			return {
 				...state,
-				selectedCard: payload
+				selectedCard: payload,
+				cardData: state.selectedCard.id === payload.id
+					? state.cardData
+					:	null
+			}
+
+		case 'SET_CARD_DATA':
+			if(state.selectedCard.id !== payload.id) return state
+
+			return {
+				...state,
+				cardData: payload,
 			}
 
 		case 'LOADING_BUTTON': 
