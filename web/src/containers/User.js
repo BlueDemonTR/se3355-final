@@ -26,6 +26,7 @@ const User = ({  }) => {
       <Route exact path='/create-lobby/:cubeId' element={<CreateLobby />} />
       <Route exact path='/lobbies' element={<Lobbies />} />
       <Route exact path='/join' element={<LobbyJoin />} />
+      <Route exact path='*' element={<Homepage />} />
     </Routes>
   )
 }

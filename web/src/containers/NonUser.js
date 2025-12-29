@@ -15,6 +15,7 @@ const NonUser = ({  }) => {
       <Route exact path='/create-cube' element={<Auth />} />
       <Route exact path='/lobbies' element={<Auth />} />
       <Route exact path='/create-lobby/*' element={<Auth />} />
+      <Route exact path='*' element={<Auth />} />
     </Routes>
   )
 }

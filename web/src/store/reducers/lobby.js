@@ -26,7 +26,8 @@ const lobby = (state = defaultState, action) => {
 				maxLobbySize: payload.lobby?.maxLobbySize,
 				status: payload.lobby?.status,
 				draftSize: payload.lobby?.draftSize,
-				cardData: payload.lobby?.cardData
+				cardData: payload.lobby?.cardData,
+				public: payload.lobby?.public
 			}
 
 		case 'SET_LOBBY_DATA': 
@@ -40,7 +41,8 @@ const lobby = (state = defaultState, action) => {
 				maxLobbySize: payload.maxLobbySize,
 				status: payload.status,
 				draftSize: payload.draftSize,
-				cardData: payload.lobby?.cardData
+				cardData: payload.cardData,
+				public: payload.public
 			}
 		
 		case 'SET_CARD_DATA':

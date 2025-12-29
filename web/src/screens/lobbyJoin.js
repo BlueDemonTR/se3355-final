@@ -45,6 +45,7 @@ const LobbyJoin = ({  }) => {
       <Input
         label='Enter Room Passcode(You can enter anything if it is a public room)'
         value={password}
+        type='password'
         onChangeText={setPassword}
         submit={joinPrivateRoom}
       />

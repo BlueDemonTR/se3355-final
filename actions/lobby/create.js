@@ -32,6 +32,8 @@ async function action(req, res) {
     attendants: [{ account: user }]
   })
 
+  await lobby.populate('attendants.account', 'username')
+
   res.send(await getClientData(lobby, user._id))
 }
 

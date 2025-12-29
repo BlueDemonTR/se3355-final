@@ -33,7 +33,7 @@ const Lobby = ({  }) => {
 
       <Text>Invite Link: {inviteLink}</Text>
 
-      <Box noFlex gap='gap-1'>
+      <Box noFlex gap='gap-2'>
         <Title>
           Users ({lobby.attendants.length}/{lobby.maxLobbySize}): {isOwner && '(You can kick users by clicking them)'}
         </Title>

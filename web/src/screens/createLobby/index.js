@@ -25,6 +25,7 @@ const CreateLobby = ({  }) => {
     }
 
     if(isNaN(data.maxLobbySize) || 2 > maxLobbySize || 8 < maxLobbySize) return alert('Invalid Lobby Size')
+    if(!name?.length) return alert('Please Enter a Name')
     if(isNaN(data.packSize)) return alert('Invalid Pack Size')
     if(isNaN(data.draftSize)) return alert('Invalid Draft Size')
 
