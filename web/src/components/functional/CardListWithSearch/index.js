@@ -1,7 +1,7 @@
 import Box from 'components/common/Box'
 import Input from 'components/common/Input'
 import { Api } from 'lib'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CardList from '../CardList'
 import Section from 'components/common/Section'
@@ -15,6 +15,10 @@ const Cards = ({ handleSelect }) => {
     dispatch = useDispatch(),
     searchExists = !!search
 
+  useEffect(() => {
+    fetchMore()
+  }, []) 
+
   async function fetchMore() {
     if(endReached) return
 
@@ -26,11 +30,11 @@ const Cards = ({ handleSelect }) => {
       payload: res.data
     })
 
-    setEndReached(endReached)
+    setEndReached(res.endReached)
   }
 
   async function searchCards(search) {
-    if(search.length < 3) return
+    if(search.length < 3) return fetchMore()
 
     const res = await Api.get('/cardDatabase/search', { name: search }, 'navigator')
     if(!res) return

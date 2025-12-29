@@ -51,7 +51,7 @@ async function init(io) {
   const res = await Api.get('https://db.ygoprodeck.com/api/v7/cardinfo.php')
   if(!res) return
 
-  global.cardDatabase = res.data
+  global.cardDatabase = ([...res.data]).sort((a, b) => a.id - b.id)
 
   const ids = res.data.reduce((prev, curr) => {
     return [...prev, ...curr.card_images]
