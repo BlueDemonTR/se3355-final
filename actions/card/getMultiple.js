@@ -11,9 +11,6 @@ const docs = {
 async function action(req, res) {
   const { cards } = req.body
 
-  console.log(cards)
-  
-
   res.send(await getCards(cards))
 }
 
