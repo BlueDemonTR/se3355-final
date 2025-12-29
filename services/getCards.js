@@ -1,4 +1,4 @@
-import { Api } from '../lib'
+import { Api, simplifyCardData } from '../lib'
 
 async function getCards(cards) {
   const ids = cards.map(x => x.id ?? x).join(',')
@@ -9,7 +9,7 @@ async function getCards(cards) {
   if(!res) return {}
 
   return res.data.reduce((prev, curr) => {
-    prev[curr.id] = curr
+    prev[curr.id] = simplifyCardData(curr)
     
     return prev
   }, {})
