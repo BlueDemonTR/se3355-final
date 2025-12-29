@@ -15,9 +15,11 @@ import process from 'node:process'
 const app = express()
 
 const corsSettings = {
-  origin: function (origin, callback) {
-    callback(null, true)
-  }
+  origin: [
+    'http://localhost:3000',
+    'localhost:3000',
+    'https://bluedemontr.github.io'
+  ]
 }
 
 app.use(cors(corsSettings))
