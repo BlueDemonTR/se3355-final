@@ -11,10 +11,16 @@ const Spinner = ({ action }) => {
     <div 
       className={reduceClass([
         'animate-spin',
-        'text-center'
+        'flex',
+        'flex-none',
+        'justify-center'
       ])}
     >
-      Loading
+      <img 
+        src={require('assets/poyocube.png')} 
+        alt='pokeball' 
+        className='w-10 h-10'
+      />
     </div>
   )
 }
