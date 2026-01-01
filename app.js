@@ -39,8 +39,8 @@ const server = http.createServer(app)
 
 let httpsServer
 if(process.env.ENV !== 'dev') {
-  const key = readFileSync('/etc/ssl/private/apache-selfsigned.key')
-  const cert = readFileSync('/etc/ssl/certs/apache-selfsigned.crt')
+  const key = readFileSync(process.env.KEY_LOCATION)
+  const cert = readFileSync(process.env.CERT_LOCATION)
   
   const options = { key, cert }
 
