@@ -1,5 +1,5 @@
-import { Box, Button, Card, CardList, CardListWithSearch, ContentArea, Input, Text } from 'components'
-import { Api, reduceClass } from 'lib'
+import { Box, Button, ButtonSeperator, Card, CardList, CardListWithSearch, ContentArea, Input, Text } from 'components'
+import { Api, reduceClass, style } from 'lib'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ImportButton } from './components'
@@ -68,16 +68,7 @@ const CreateCube = ({  }) => {
   return (
     <ContentArea>
       <div 
-        className={reduceClass([
-          'flex',
-          'flex-col',
-          'bg-tertiary',
-          'p-4',
-          'border-2',
-          'border-primary',
-          'rounded-lg',
-          'gap-2'
-        ])}
+        className={reduceClass(style.cubeBox)}
       >
         <Input 
           value={name}
@@ -92,7 +83,7 @@ const CreateCube = ({  }) => {
           handleClick={handleRemoveCard}
         />
 
-        <Box justifyBetween directionSwap noFlex gap='gap-2'>
+        <ButtonSeperator>
           <ImportButton 
             setCards={setCards}
           />
@@ -109,7 +100,7 @@ const CreateCube = ({  }) => {
               {cards.length}/80
             </Text>
           </Box>
-        </Box>
+        </ButtonSeperator>
       </div>
 
       <CardListWithSearch 

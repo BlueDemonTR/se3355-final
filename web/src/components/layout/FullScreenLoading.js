@@ -10,7 +10,6 @@ const FullScreenLoading = () => {
         src={require('assets/poyocube.png')} 
         alt='pokeball' 
         className='animate-spin w-24 h-24'
-
       />
       
     </div>

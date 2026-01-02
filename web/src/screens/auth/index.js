@@ -1,4 +1,4 @@
-import { Box, Button, ContentArea, Input } from 'components'
+import { Box, Button, ButtonSeperator, ContentArea, Input } from 'components'
 import { Api, setToken } from 'lib'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -45,7 +45,7 @@ const Auth = ({  }) => {
         onChangeText={setPassword}
       />
 
-      <Box justifyBetween directionSwap noFlex gap='gap-2'>
+      <ButtonSeperator>
         <Button 
           text='Login'
           action='auth'
@@ -59,7 +59,7 @@ const Auth = ({  }) => {
           disabled={!enabled}
           onClick={() => authorize()}
         />
-      </Box>
+      </ButtonSeperator>
     </ContentArea>
   )
 }

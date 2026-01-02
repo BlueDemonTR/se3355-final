@@ -3,6 +3,7 @@ import collapsableContentWrapper from './collapsableContentWrapper'
 import collapsableTitle from './collapsableTitle'
 import contentArea from './contentArea'
 import contentWrapper from './contentWrapper'
+import cubeBox from './cubeBox'
 import defaultButton from './defaultButton'
 import footer from './footer'
 import footerInner from './footerInner'
@@ -39,7 +40,8 @@ const style = {
   footerInner,
   inputWrapperWrapper,
   inputWrapper,
-  input
+  input,
+  cubeBox
 }
 
 export default style

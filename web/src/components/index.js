@@ -14,6 +14,7 @@ export { default as Footer } from './layout/Footer'
 export { default as ContentArea } from './layout/ContentArea'
 export { default as FullScreenLoading } from './layout/FullScreenLoading'
 export { default as Nav } from './layout/Nav'
+export { default as ButtonSeperator } from './layout/ButtonSeperator'
 
 export { default as ErrRes } from './functional/ErrRes'
 export { default as ResultsWithPagination } from './functional/ResultsWithPagination'

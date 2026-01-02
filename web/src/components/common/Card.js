@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 const Card = ({ item, onClick }) => {
   const clickEvent = onClick ?? goToDatabase,
     handleClick = global.isSmall 
-      ? displayCard
+      ? () => setTimeout(displayCard, 300)
       : clickEvent,
     dispatch = useDispatch()
 

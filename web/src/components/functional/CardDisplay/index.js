@@ -47,6 +47,7 @@ const CardDisplay = ({  }) => {
         'overflow-y-scroll',
         'no-scrollbar', 
         'max-h-card-display',
+        'z-10'
       ])}
     >
       {open
