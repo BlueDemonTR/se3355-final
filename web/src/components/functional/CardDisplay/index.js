@@ -6,6 +6,7 @@ import Text from 'components/common/Text'
 import { Api, reduceClass } from 'lib'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { getStatText } from './lib'
 
 let timer
 const CardDisplay = ({  }) => {
@@ -92,7 +93,7 @@ const CardDisplay = ({  }) => {
                 
                 <Text>{fetched.attribute} {fetched.typeline?.join('/') ?? (fetched.humanReadableCardType)}</Text>
                 <Text size='text-sm'>{fetched.desc}</Text>
-                <Text>{[fetched.atk, fetched.def].filter(x => x).join('/')}</Text>
+                <Text>{getStatText(fetched.atk, fetched.def)}</Text>
               </div>
             )}
           </div>
